@@ -1,23 +1,26 @@
 language: node_js
 node_js:
-  - node
+- node
 jobs:
   include:
-    - stage: Deploy
-      if: branch = master
-      cache: npm
-      script:
-        - npm i
-        - npm run build
-      deploy:
-        provider: pages
-        local_dir: dist
-        target-branch: gh-pages
-        name: Travis Deployment Bot
-        skip_cleanup: true
-        github_token: "$GITHUB_TOKEN"
-        fqdn: www.fairfinesnofees.com
-        on:
-          branch: master
+  - stage: Deploy
+    if: branch = master
+    cache: npm
+    script:
+    - npm i
+    - npm run build
+    deploy:
+      provider: pages
+      local_dir: dist
+      target-branch: gh-pages
+      name: Travis Deployment Bot
+      skip_cleanup: true
+      github_token: "$GITHUB_TOKEN"
+      fqdn: www.fairfinesnofees.com
+      on:
+        branch: master
 notifications:
   email: false
+env:
+  global:
+    secure: hF/kxEszWZ6Rkdn+Ci/TBz089FG/LmtlFvDT0myX+DQ/fRQxPT6D++SjoLHLa50yO/qSjvWLvu0G/OglELgWNomrbMYxEwDPPNjN7NtdAShuezGuc6YI7G3dofu9VJrlDGi5cNfTBEZuAiYZDcNNBySHARIJQqBKUrATrgMfVufbTdRMLvUt69jPdercQ3Xoias/ZVqo4qf4dyLTcFTP+0NBnlGh0mcU4VxS0jYNAYOtL8RSkPTFJuY7zDdnYyMAeuVS/TKs1P7yvRttSB/RKf7Je3javH1gVXwV3EBuxX4722ahAaiLF8LFUDlEj8dXiVA9FPBZVEhw5B7zwaVCfHXtLKNf7GR5GyGk0tx6JmbaMDhiMH0i+r+Ad5qNpYDOjSCXEnZBk1CF1ti67+zuztP9Y2vVVnrwU6v08uYsvEXRmgX3pnaQtrxk84copoKo7MWaySDydnb9VSrkOePMDYnsI8+xHBCj1aOI+vThyge7QWZax3Cq/OAg6nL2ifqyaZXKxcRuuQY+2iVTVgiSC+T/QC7Scd4Uc3875Ig1sjk2/0y/Tg+A5fg34r3GEkLvCo4CeADrkENfNvdPaiIlGBKUPWRQNo/oMs/Dnne/gc5/xvqqLJjmvcT0NCZftSiDayDiwVa2HVnT26hcq3PRr/mBGGgvgunAVduV+gh92yI=
