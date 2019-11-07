@@ -122,8 +122,6 @@
 <script>
 // @ is an alias to /src
 
-import { db } from "@/firebase";
-
 export default {
   name: "SignOnForm",
   data() {
