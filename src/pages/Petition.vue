@@ -128,6 +128,7 @@ export default {
   name: "SignOnForm",
   data() {
     return {
+      db: {},
       form: {
         repeal: {
           id: "repeal",
@@ -191,6 +192,11 @@ export default {
         }
       }
     };
+  },
+  mounted() {
+    import("@/firebase").then(res => {
+      this.db = res;
+    });
   },
   computed: {
     dataArray() {

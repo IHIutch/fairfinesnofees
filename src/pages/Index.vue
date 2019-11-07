@@ -230,12 +230,12 @@
 
 <script>
 // @ is an alias to /src
-import { db } from "@/firebase";
 
 export default {
   name: "Home",
   data() {
     return {
+      db: {},
       form: {
         contact: {
           id: "contact",
@@ -435,6 +435,11 @@ export default {
       }
     };
   },
+  mounted() {
+    import("@/firebase").then(res => {
+      this.db = res;
+    });
+  },
   computed: {
     dataArray() {
       var data = {};
@@ -447,7 +452,7 @@ export default {
   },
   methods: {
     submitData() {
-      db.collection("trafficStopForm").add(this.dataArray);
+      this.db.collection("trafficStopForm").add(this.dataArray);
     }
   }
 };
