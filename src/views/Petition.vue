@@ -193,11 +193,6 @@ export default {
       }
     };
   },
-  mounted() {
-    import("@/firebase").then(res => {
-      this.db = res;
-    });
-  },
   computed: {
     dataArray() {
       var data = {};
