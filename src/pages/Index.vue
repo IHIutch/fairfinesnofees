@@ -214,6 +214,7 @@
       </div>
       <div class="flex items-center justify-center">
         <button
+          @click="submitData"
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="button"
         >
@@ -229,6 +230,7 @@
 
 <script>
 // @ is an alias to /src
+import { db } from "@/firebase";
 
 export default {
   name: "Home",
@@ -433,7 +435,20 @@ export default {
       }
     };
   },
-  computed: {},
-  methods: {}
+  computed: {
+    dataArray() {
+      var data = {};
+      Object.keys(this.form).forEach(key => {
+        data[key] = this.form[key].value;
+      });
+      data["created"] = new Date();
+      return data;
+    }
+  },
+  methods: {
+    submitData() {
+      db.collection("trafficStopForm").add(this.dataArray);
+    }
+  }
 };
 </script>
