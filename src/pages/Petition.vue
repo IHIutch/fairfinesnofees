@@ -208,7 +208,7 @@ export default {
   },
   methods: {
     submitData() {
-      db.collection("petition").add(this.dataArray);
+      this.db.collection("petition").add(this.dataArray);
     }
   }
 };
