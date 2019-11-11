@@ -18,7 +18,7 @@ jobs:
         github_token: "$GITHUB_TOKEN"
         fqdn: www.fairfinesnofees.com
         on:
-          branch: master
+          branch: vue-app
 notifications:
   email: false
 env:
