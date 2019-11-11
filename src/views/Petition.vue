@@ -108,6 +108,7 @@
           @click="submitData()"
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="button"
+          :disabled="isSaving"
         >
           Submit
         </button>
@@ -128,7 +129,7 @@ export default {
   name: "SignOnForm",
   data() {
     return {
-      db: {},
+      isSaving: false,
       form: {
         repeal: {
           id: "repeal",
@@ -205,7 +206,15 @@ export default {
   },
   methods: {
     submitData() {
-      db.collection("petition").add(this.dataArray);
+      this.isSaving = true;
+      let self = this;
+      db.collection("petition")
+        .add(this.dataArray)
+        .then(() => {
+          self.$router.push({
+            name: "ThankYou"
+          });
+        });
     }
   }
 };

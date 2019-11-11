@@ -217,6 +217,7 @@
           @click="submitData"
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="button"
+          :disabled="isSaving"
         >
           Submit
         </button>
@@ -236,7 +237,7 @@ export default {
   name: "Home",
   data() {
     return {
-      db: {},
+      isSaving: false,
       form: {
         contact: {
           id: "contact",
@@ -448,7 +449,15 @@ export default {
   },
   methods: {
     submitData() {
-      db.collection("trafficStopForm").add(this.dataArray);
+      this.isSaving = true;
+      let self = this;
+      db.collection("trafficStopForm")
+        .add(this.dataArray)
+        .then(() => {
+          self.$router.push({
+            name: "ThankYou"
+          });
+        });
     }
   }
 };
