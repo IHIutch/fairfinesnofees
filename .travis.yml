@@ -4,7 +4,7 @@ node_js:
 jobs:
   include:
     - stage: Deploy
-      if: branch = master
+      if: branch = vue-app
       cache: npm
       script:
         - npm i
