@@ -224,7 +224,7 @@
       </div>
     </form>
     <p class="text-center text-gray-500 text-sm">
-      &copy; 2019 Fair Fines &amp; Fees Coalition, Buffalo NY
+      &copy; 2019 Fair Fines + Fees Coalition, Buffalo NY
     </p>
   </div>
 </template>
