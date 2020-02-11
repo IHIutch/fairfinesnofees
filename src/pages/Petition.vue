@@ -203,7 +203,7 @@ export default {
   methods: {
     toThankYou() {
       this.$router.push({
-        name: "ThankYou"
+        path: "/thank-you"
       });
     },
     submitData() {
