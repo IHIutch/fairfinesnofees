@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") postcssPlugins.push(purgecss());
 module.exports = {
   siteName: "Fair Fines & Fees Coalition",
   siteUrl: "https://www.fairfinesnofees.com",
-  titleTemplate: "%s | Buffalo Green Code",
+  titleTemplate: "%s | Fair Fines & Fees Coalition",
   css: {
     loaderOptions: {
       postcss: {
