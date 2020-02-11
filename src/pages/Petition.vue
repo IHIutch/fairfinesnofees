@@ -191,24 +191,43 @@ export default {
       }
     };
   },
-  mounted() {
-    import("@/firebase").then(res => {
-      this.db = res;
-    });
-  },
   computed: {
-    dataArray() {
-      var data = {};
-      Object.keys(this.form).forEach(key => {
-        data[key] = this.form[key].value;
+    fetchData() {
+      return Object.keys(this.form).map(key => {
+        return Array.isArray(this.form[key].value)
+          ? JSON.stringify(this.form[key].value)
+          : this.form[key].value;
       });
-      data["created"] = new Date();
-      return data;
     }
   },
   methods: {
+    toThankYou() {
+      this.$router.push({
+        name: "ThankYou"
+      });
+    },
     submitData() {
-      this.db.collection("petition").add(this.dataArray);
+      this.isSaving = true;
+      this.doFetch();
+    },
+    doFetch() {
+      fetch(
+        "https://script.google.com/macros/s/AKfycbzioe1Q49scDcGifK7PvWlNL4f_rVXJxdlTWofFanUGVos7lYsB/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          redirect: "follow",
+          body: JSON.stringify({
+            details: this.fetchData,
+            sheetName: "Petition"
+          })
+        }
+      ).then(() => {
+        this.toThankYou();
+      });
     }
   }
 };
