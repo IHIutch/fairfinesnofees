@@ -8,8 +8,7 @@
         change.
       </p>
       <p class="text-gray-700 mb-4">
-        Stay up to date with the Fair Fines + Fees Coalition on social
-        media:
+        Stay up to date with the Fair Fines + Fees Coalition on social media:
       </p>
       <div class="flex justify-center">
         <a

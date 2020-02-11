@@ -230,7 +230,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import { db } from "../firebase";
 
 export default {
@@ -438,26 +437,57 @@ export default {
     };
   },
   computed: {
-    dataArray() {
+    firebaseData() {
       var data = {};
       Object.keys(this.form).forEach(key => {
         data[key] = this.form[key].value;
       });
       data["created"] = new Date();
       return data;
+    },
+    fetchData() {
+      return Object.keys(this.form).map(key => {
+        return Array.isArray(this.form[key].value)
+          ? JSON.stringify(this.form[key].value)
+          : this.form[key].value;
+      });
     }
   },
   methods: {
+    toThankYou() {
+      this.$router.push({
+        name: "ThankYou"
+      });
+    },
     submitData() {
       this.isSaving = true;
-      let self = this;
+      this.doFetch();
+    },
+    addToFirebase() {
       db.collection("trafficStopForm")
-        .add(this.dataArray)
+        .add(this.firebaseData)
         .then(() => {
-          self.$router.push({
-            name: "ThankYou"
-          });
+          this.toThankYou();
         });
+    },
+    doFetch() {
+      fetch(
+        "https://script.google.com/macros/s/AKfycbzioe1Q49scDcGifK7PvWlNL4f_rVXJxdlTWofFanUGVos7lYsB/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          redirect: "follow",
+          body: JSON.stringify({
+            details: this.fetchData,
+            sheetName: "Traffic Stop Form"
+          })
+        }
+      ).then(() => {
+        this.toThankYou();
+      });
     }
   }
 };
