@@ -124,6 +124,9 @@
 
 export default {
   name: "SignOnForm",
+  metaInfo: {
+    title: "Sign On Petition"
+  },
   data() {
     return {
       db: {},

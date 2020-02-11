@@ -233,6 +233,9 @@
 
 export default {
   name: "Home",
+  metaInfo: {
+    title: "Traffic Stop Form"
+  },
   data() {
     return {
       db: {},

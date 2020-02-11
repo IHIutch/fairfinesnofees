@@ -35,6 +35,9 @@ import { FacebookIcon, TwitterIcon } from "vue-feather-icons";
 
 export default {
   name: "ThankYou",
+  metaInfo: {
+    title: "Thank You"
+  },
   components: {
     FacebookIcon,
     TwitterIcon
