@@ -13,6 +13,15 @@ export default function(Vue, { router, head, isClient }) {
   // Set default layout as a global component
   Vue.component("Layout", DefaultLayout);
 
+  // Remove hash if users have hash route bookmarked, etc.
+  router.beforeEach((to, from, next) => {
+    if (to.hash.length) {
+      next(to.hash.substr(1));
+    } else {
+      next();
+    }
+  });
+
   head.meta.push({
     property: "og:title",
     content: siteName
