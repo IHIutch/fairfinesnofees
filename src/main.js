@@ -13,7 +13,7 @@ export default function(Vue, { router, head, isClient }) {
   // Set default layout as a global component
   Vue.component("Layout", DefaultLayout);
 
-  // Remove hash if users have hash route bookmarked, etc.
+  // Remove hash if users have hash route bookmarked, saved, etc.
   router.beforeEach((to, from, next) => {
     if (to.hash.length) {
       next(to.hash.substr(1));
